@@ -1,0 +1,242 @@
+--Tabla comentarios
+CREATE TABLE comentarios (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    usuario_id INT UNSIGNED NOT NULL,
+    comentario TEXT,
+    fecha DATETIME,
+    cantidad_estrellas INT,
+    PRIMARY KEY(id),
+    FOREIGN KEY(usuario_id) REFERENCES usuarios(id)
+)
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;
+
+-- Luego se insertan datos de forma aleatoria con esta sentencia pero lo ejecutaré 100 veces para que me de los 100 registros que quiero
+
+INSERT INTO comentarios (usuario_id, comentario, cantidad_estrellas) VALUES
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Con la última actualización no sé si se está respetando el número de comidas que pagué dentro de los planes anteriores, no sé qué tan legal sea esto de que cambien de la nada los planes sin avisar después de que ya estén pagos', 3),
+(    
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Todo iba bien hasta que actualizaron el app el 16 de junio. Con la actualización me han dado un saldo en dinero sustituyendo el sistema de creditos anterior. Sin ninguna explicación de la converción. Lo que yo puedo asumir segun los nuevos precios (han subido) es que antes yo accedia a 20 almuerzos y cenas por 480 soles. Ahora mi plan cuesta 495 soles y puedo acceder 18 almuerzos y cenas. Es mas caro y me dan menos.', 1),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'La comida es cara. La calidad de sus productos no es bueno, la sazón hay días que son bueno y a veces malos. El área de servicio al cliente ha cambiado para mal, tuve una queja con mi comida y lo único que recibí fue un correo que mi petecion fue aceptada pero no hubo más retroalimentacion. Lo uso porque no tengo tiempo para cocinar. Sin embargo no ayuda para cuidar un régimen calorico correcto.', 2
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Las opciones y la calidad de los alimentos es buena ... El único detalle o falla es que es muy poca proteína, estaría genial que bajaran la cantidad de carbohidratos y aumentar la proteína para que sean Excelentes', 4
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Desde la última actualización ahora el plan mensual solo alcanza para 17 pedidos, antes alcanzaba para 20 por el mismo precio, yo pagué por 20 pedidos y automáticamente al actualizar he perdido 3 almuerzos, al reclamar me comentaron que los almuerzos de 600kcal cuestan 15.50, lo cual fue una mentira y no me dejaron demostrarles con un pantallazo que los almuerzos de 600kcal estaban a 17.50, ya que me cerraron el chat antes de poder hacerlo, en resumen me han robado y no puedo reclamar', 1
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Lo único bueno es que son puntuales con la entrega,pésima comida l@ porciones demaciado pequeñas un poco de arroz crudo,y lo peor de todo es que con tanta queja no tratan de mejorar.', 1
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Tengo más tiempo para mí y no me preocupo de si comeré saludable más tarde. Me gusta mucho', 5
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Siento que las fotos no se acercan a la realidad del plato. No puedo ajustar cosas en el plato o por gusto o por alergia a ciertas cosas así q eso lo desecho. Algunas comidas parecen trasnochadas. Depende del lugar en donde esté la. Calidad baja', 3
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Horrible ya no lo utilicen. Ya no tienes comida solo saldo y te quitan tus comidas ya compradas antes te daban 20 días pero ahora solo 14 es una estafa gigante.', 1
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'La comida es muy buena y saludable. Han mejorado los tiempos de entrega, a veces llegan a tener retrasos importantes.', 4
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Muy buena app, me ha ayudado en mi salud y poder conseguir mi objetivo.', 5
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Les comento mi experiencia, fue terrible, me llego la comida en un estado terrible, aplastada y cuando me reposición el pedido la persona que hace el delivery terrible actitud solo porque le dije que iba a verificar que llego correcto se molesto.', 1
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Es buena aunque aveces me pierdo cuando quiero programar un pedido para el día siguiente.', 4
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Parece porciones pequeñas pero si te llenas, el sabor es ligero pero está rico, tiene opción para agregar picante extra y puedes modificar si quieres bajar de peso o solo comer saludable. El repartidor muy muy amable', 5
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Respecto al app, muy buena interface', 5
+), 
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Son cumplidos con los pedidos, pero a veces la comida no corresponde a las fotos que muestran', 4
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Bastante buena muy sencilla de usar con muchas opciones útiles para llevar un buen estilo de alimentación', 5
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'El menu ha mejorado significativamente desde que los empecé a usar. Muy bueno y recomendado.', 5
+), 
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'El precio es muy caro para las porciones de proteína que ofrecen. Casi todos los platillos llegan a la aportación calórica necesaria con arroz y/o pasta. Esto va a arruinar cualquier dieta pues es muy difícil conservar el déficit consumiendo calorias simples. Sólo recomiendo si no están en un régimen muy apretado y están dispuestos a pagar la comida un poco cara, pues el servicio de entrega es bueno, pero si lo usas para llegar a cierta meta de consumo, con esta app, simplemente no se puede', 3 
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Excelente servicio, comida de buena calidad y buen sabor, y porciones bastante buenas.', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Excelente, muy fácil de usar te facilita todo.', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Comida es deliciosa muy balanceada y variada los domiciliarios son cumplidos y amables
+', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Es una opción práctica y el app hace todo muy sencillo. Sugeriría mejorar en la cantidad de proteína y vegetales que hay en las comidas.', 4
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Los productos que ofrecen son buenos tienen buen sabor pero el precio es muy alto para tan poco y sin bebida, deberían dar la bebida q se justifique el costo y la compra del producto', 4
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Muy buen servicio, me han gustado bastante la variedad de platos y son muy rápidos con sus entregas
+', 5
+), 
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Es una buena opcion para las personas que no siempre tienen tiempo de cocinar, el sabor se compara con algo casero, hay platilos muy buenos, mientras que en otro se nota que se pudieron esmerar mas
+', 4
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Sin duda alguna una gran ayuda cuando no se tiene el espacio para cocinar, muy rico, hay mucha variedad pero sobre todo muy nutritivo.
+', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Porciones que dan pena, hasta mi hija quedaba con hambre.
+', 1
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Funciona! Ya llevo mas de un mes con la aplicacion. He bajado de peso y ademas, ya no pienso en el almuerzo. Hago el pedido los domingos y toda la semana llega a la porteria. Delicioso y variado.
+', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Comida de mala calidad, muy chiquitas las porciones y muy poca proteína. Además después de inscribir la tarjeta de crédito me han hechos varios débitos y nadie responde.... Un peligro!!!!
+', 1
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Me ha gustado sus platos, dejaría como mejora que la lechuga no la piquen grande
+', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Comida saludable y variada, atención oportuna
+', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Buena opción para comida saludable. Recomendado
+', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Muy regular, las porciones son pequeñas, el plato no es gran cosa una proteína no muy grande, un poco de arroz o papa y un poquito de vegetales, el sabor es aceptable pero nada del otro mundo excepto en contadas ocasiones me sorprendieron.', 2
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Los almuerzos que ofrece manzana verde son variados eso hace que no te aburras de comer sanamente', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Es muy intuitiva la app y tiene muchas funciones, además que se puede ver en tiempo real cómo vas en la lista de entregas.', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Es la mejor opción de comida saludable, me encanta.', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Llevo una semana con el servicio y veo que la iniciativa es buena dentro del mercado, sin embargo lamentablemente la comida es muy poca, y eso que lo coloque con la opción para engordar. Con el monto que uno paga veo que puedo adquirir almuerzos mucho mejores balanceados.', 1
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Es mi tercer almuerzo y siento que ya perdí mi plata. Vegetales viejos, carne incomible y cantidades industriales de arroz. No le veo lo saludable, productos de cero calidad y cada vez que llega me sorprende la terrible presentación. Si ud se quiere a sí mismo no la descargue, ni se emocione con las fotos de la comida, porque lo que llega no es ni la sombra.', 1
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Rico y saludable', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'El app es un buen desarrollo la comida es muy poquita mal presentada y se nota que las verduras y demás lo mantienen congelado y lo preparan al baño maria terrible experiencia gastronomica, recibire los platos faltantes de mi plan y me retirare no vale la pena el precio por lo que dan, mejor un restaurante de barrio toda la vida, Dan sopa por lo menos y es comida con una preparacion más elaborada, no pierdan su dinero como yo lo hice', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Mala calidad, la comida no está fresca, a veces no huele bien y se ve que tiene días preparada, mala experiencia, no te regresan el dinero aunque ya no quieras el servicio por mala calidad. Ya los había contactado y la respuesta fue que van a mejorar el servicio, que no me pueden regresar el dinero, me van a obligar a usar la app hasta que se me acaben los creditos, pero la calidad de la comida es muy importante para mi y prefiero servicios con estandares de calidad más elevados', 1
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Es una muy buena aplicación. Su comida saludable cambio para bien mis hábitos. Muy contenta de haberlos encontrado y tener con Manzana Verde ya más de un año', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Es una alternativa saludable, y que ahorra tiempo que puedes utilizar en otra actividad, no he tenido problemas con la plataforma, me parece amigable para el usuario. Adicional que tienen buena fidelización de cliente', 5
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Me pareció una idea genial poder comprar los almuerzos ya que uno a veces no tiene. Tiempo. Pero lastimosamente la comida es muy desabrida y muy poca proteína. La verdad para el precio deberian ofrecer algo mejor. Ojalá puedan mejorar porque la idea es buena. No creo que vaya a renovar el siguiente mes.', 1
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Una opción práctica y saludable', 4
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Terrible los platos que venden. Muestran una cosa y lo que llega no tiene coherencia con la cantidad de la foto Diana Gómez compre el plan de prueba y menos mal probé las porciones que envían dan es risa 😄 no es ni para un niño de 6 años. Les aconsejo que no pierdan su dinero. De verdad enviaron un vaso con un snack y tenía 5 mm de porción', 1
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Mala experiencia voy en el día 5 ya ban dos almuerzos incomibles, la calidad mala, las porciones desbalanceadas más carbohidrato que otra cosa . Nada es fresco ni parecido a la foto.', 1
+),
+(
+     (SELECT ROUND(RAND()*49+1)
+     ), 'Comida rica y equilibrada', 4
+),
+(
+    (SELECT ROUND(RAND()*49+1)
+     ), 'Muy rico y buen precio', 5
+);
+
+-- Como algunos id de los usuarios se repetiran, tengo que corregirlos y que no se repitan ya que un usuario solo se le permite un comentario
+-- Primero buscamos los id repetidos por rangos. Como son 50, vamos de 10 en 10
+
+SELECT * FROM comentarios WHERE usuario_id >= 1 AND usuario_id <=10;
+
+-- Ahora con update vamos cambiando los usuarios id repetidos por los que no se encuentran en la tabla
+-- Ejemplo:
+UPDATE comentarios
+SET usuario_id = 30
+WHERE id = 17;
+
+-- Ya por último ponemos la fecha 
+
+UPDATE reclamos 
+SET fecha = DATE_ADD('2022-09-01', INTERVAL FLOOR(RAND() * (DATEDIFF('2022-12-31', '2022-09-01') + 1)) DAY) 
+WHERE codigo >= 1
+    AND codigo <= 50;
