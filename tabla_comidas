@@ -1,0 +1,88 @@
+-- Primero se creará la tabla
+
+CREATE TABLE comidas (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    comida VARCHAR(100),
+    tipo VARCHAR(100),
+    kcal INT,
+    proteina INT,
+    grasas INT,
+    carbohidratos INT
+    PRIMARY KEY(id),
+    FOREIGN KEY(delivery_id) REFERENCES delivery(id)
+)
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;
+
+
+-- Ahora se insertarán datos ficticios
+
+INSERT INTO comidas (comida) VALUES 
+("Arroz con pollo"),
+('Lomo saltado'),
+('Ají de gallina'),
+('Carapulcra con sopa seca'),
+('Tallarines al pesto con bisteck'),
+('Pollo a la hawaiana'),
+('Tallarín salteado de cerdo y piña'),
+('Sudado de pescado'),
+('Ensalada rusa con pollo'),
+('Pescado a la jardinera'),
+('Seco con frejoles'),
+('Tallarines en salsa huancaína con carne'),
+('Pescado a la mostaza'),
+('Puré de espinacas con saltado de pollo'),
+('Chaufa de quinua'),
+('Escabeche de pescado'),
+('Arroz con pollo a la chiclayana y zarza'),
+('Yakimeshi con cerdo'),
+('Hamburguesas de garbanzos'),
+('Cau cau de pollo'),
+('Croquetas de pollo en salsa Huacatay'),
+('Pescado a la plancha en salsa de pimentón'),
+('Pachamanca a la olla'),
+('Filete de pescado envuelto en avena'),
+('Rellenitos de zucchini con pollo'),
+('Lomo parrillero con puré'),
+('Ratatouillie con quinua'),
+('Pollo al limón'),
+('Chancho a la naranja'),
+('Albóndigas en salsa parrillera'),
+('Bowl de pescado con quinua'),
+('Seco de pollo con verduras al vapor'),
+('Pollo en salsa de champiñones'),
+('Crepes de avena'),
+('Panqueques con frutas'),
+('Tortillas de verduras'),
+('Roll de canela');
+
+--Ahora rellenamos las demás columnas
+
+UPDATE comidas
+SET tipo =
+    CASE
+        WHEN comida = 'Crepes de avena' THEN 'Snack'
+        WHEN comida = 'Panqueques con frutas' THEN 'Snack'
+        WHEN comida = 'Tortillas de verduras' THEN 'Snack'
+        WHEN comida = 'Roll de canela' THEN 'Snack'
+        WHEN comida = 'Albóndigas en salsa parrillera' THEN 'Cena'
+        WHEN comida = 'Pollo al limón' THEN 'Cena'
+		WHEN comida = 'Hamburguesas de garbanzos' THEN 'Cena'
+        WHEN comida = 'Rellenitos de zucchini con pollo' THEN 'Cena'
+        WHEN comida = 'Lomo parrilero con puré' THEN 'Cena'
+        WHEN comida = 'Pollo en salsa de champiñones' THEN 'Cena'
+        WHEN comida = 'Pollo a la hawaiana' THEN 'Cena'
+        WHEN comida = 'Chaufa de piña' THEN 'Cena'
+        ELSE 'Almuerzo'
+    END,
+    kcal = 
+    CASE
+        WHEN tipo = 'Almuerzo' THEN 600
+        WHEN tipo = 'Cena' THEN 400
+        ELSE 200
+    END,
+    proteina = ROUND(RAND() * 23 + 25),
+    grasas = ROUND(RAND() * 8 + 8),
+    carbohidratos = ROUND(RAND() * 51 + 59)
+WHERE id >= 1
+	AND id <= 37;
