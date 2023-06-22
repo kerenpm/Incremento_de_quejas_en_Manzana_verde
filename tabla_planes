@@ -1,0 +1,62 @@
+-- Primero se creará la tabla usuarios
+
+CREATE TABLE pedidos (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    usuario_id INT UNSIGNED NOT NULL,
+    plan VARCHAR(100),
+    detalle_plan VARCHAR(100),
+    medio_de_pago VARCHAR(50),
+    precio DECIMAL(5,2),
+    fecha DATE,
+    PRIMARY KEY(id),
+    FOREIGN KEY(usuario_id) REFERENCES usuarios(id)
+)
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;
+
+-- Luego se insertan datos de forma aleatoria con esta sentencia pero lo ejecutaré 150 veces para que me de los 150 registros que quiero
+
+INSERT INTO pedidos (usuario_id) VALUES
+(
+    (SELECT ROUND(RAND()*49+1)
+     ));
+
+-- Ahora completamos las demás columnas 
+
+UPDATE pedidos
+SET plan =
+    CASE
+        WHEN RAND() < 0.33 THEN 'Prueba'
+        ELSE 'Esenciales'
+    END,
+    detalle_plan =
+    CASE
+        WHEN RAND() < 0.33 THEN 'Básico'
+        WHEN RAND() >= 0.33 AND RAND() < 0.66 THEN 'Intermedio'
+        ELSE 'Completo'
+    END,
+    medio_de_pago =
+    CASE 
+        WHEN RAND() < 0.33 THEN 'Master Card'
+        WHEN RAND() >= 0.33 THEN 'Visa'
+        WHEN RAND() < 0.66 THEN 'American Express'
+        ELSE 'Diners Club International'
+    END,
+    precio = 
+    CASE
+        WHEN plan = 'Prueba' AND detalle_plan = 'Básico' THEN 16.24
+        WHEN plan = 'Prueba' AND detalle_plan = 'Intermedio' THEN 28.00
+        WHEN plan = 'Prueba' AND detalle_plan = 'Completo' THEN 33.48
+        WHEN plan = 'Esenciales' AND detalle_plan = 'Básico' THEN 290.00
+        WHEN plan = 'Esenciales' AND detalle_plan = 'Intermedio' THEN 500.00
+        ELSE 598.00
+    END
+WHERE id >= 1
+	AND id <= 150;
+
+-- Columna fecha
+
+UPDATE pedidos
+SET fecha = DATE_ADD('2022-09-01', INTERVAL FLOOR(RAND() * (DATEDIFF('2022-12-31', '2022-09-01') + 1)) DAY) 
+WHERE id >= 1
+    AND id <= 150;
