@@ -1,0 +1,104 @@
+-- Primero se creará la tabla usuarios
+
+CREATE TABLE usuarios (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    fecha_nacimiento DATE NOT NULL,
+    estatura DECIMAL(5,2),
+    peso DECIMAL(5,2),
+    genero CHAR(8),
+    objetivo_nutricional VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
+    contraseña VARCHAR(100) UNIQUE,
+    numero_celular VARCHAR(15) UNIQUE,
+    distrito VARCHAR(50)
+    PRIMARY KEY(id)
+)
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;
+
+-- Luego se insertan datos de forma aleatoria pero solo hasta la columna fecha de nacimiento
+
+INSERT INTO usuarios (nombre, apellido, fecha_nacimiento) VALUES
+('Alejandro Eduardo', 'Castro Valdez', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Ana María', 'López Cáceres', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Carlos Andrés', 'Salazar Vega' , DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Gabriela Alejandra', 'Torres Mendoza' , DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Juan Manuel', 'Huamán Medina' , DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Laura Patricia', 'Montes Fernández' , DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Luis Felipe', 'Sánchez Ortega' , DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Mariana Fernanda', 'Ríos Díaz' , DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Miguel Ángel', 'González Palacios' , DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Patricia Carolina', 'Silva Acosta' , DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Renato José', 'Ramírez Torres', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Sebastián Antonio', 'Mendoza García', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Valentina Isabel', 'Cáceres Quispe', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Daniel Alejandro', 'Vargas Morales', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Natalia Gabriela', 'Díaz Castro', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Ricardo Arturo', 'Flores Sánchez', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Andrea Valentina', 'Vargas Ríos', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('José Antonio', 'Huamán Torres', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Carolina Isabel', 'Medina López', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Luis Eduardo', 'Salazar García', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Gabriela Mariana', 'Acosta Montes', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Juan Carlos', 'Palacios Díaz', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Ana Sofía', 'González Silva', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Alejandro Daniel', 'Castro Mendoza', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Fernanda Camila', 'Ortega Ramírez', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Martín Sebastián', 'Quispe Fernández', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Natalia Gabriela', 'Cáceres Medina', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Diego Alejandro', 'López Vargas', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Mariana Alejandra', 'Torres Ríos', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Carlos Alberto', 'Mendoza Castro', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Laura Patricia', 'Sánchez Montes', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Renato José', 'Vargas Palacios', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Valentina Carolina', 'Medina Acosta', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Miguel Ángel', 'Salazar Díaz', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Patricia Gabriela', 'Castro Ortega', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Sebastián Andrés', 'Fernández Quispe', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Carolina Alejandra', 'García Ríos', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Daniel Eduardo', 'Díaz Mendoza', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Andrea Mariana', 'Montes Palacios', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Juan Manuel', 'Ramírez Huamán', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Alejandra Fernanda', 'Silva Cáceres', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Luis Felipe', 'Acosta Sánchez', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Gabriela Antonia', 'Quispe Vargas', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('José Antonio', 'Ríos Medina', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Natalia Isabel', 'Palacios Torres', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Carlos Andrés', 'Castro Fernández', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Laura Sofía', 'Sánchez López', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Diego Alejandro', 'Mendoza Salazar', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Mariana Carolina', 'Vargas Díaz', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR)),
+('Ricardo Arturo', 'Huamán Ramírez', DATE_SUB(CURDATE(), INTERVAL FLOOR(RAND() * 52) + 18 YEAR));
+
+-- Ahora se insertarán datos ficticios a través de querys que generan números aleatorios 
+
+UPDATE usuarios
+SET estatura = ROUND(RAND() * 50 + 140, 2),
+    peso = ROUND(RAND() * 85 + 45, 2),
+    genero = 
+    CASE 
+        WHEN SUBSTRING_INDEX(nombre, ' ', 1) LIKE "%a" THEN 'Mujer' 
+        WHEN SUBSTRING_INDEX(nombre, ' ', 2) LIKE "%a" THEN 'Mujer' ELSE 'Hombre' END,
+	objetivo_nutricional = 
+    CASE
+        WHEN (peso/(estatura*estatura)) > 25 AND < 29.9 THEN 'Mejorar mi salud'
+        WHEN (peso/(estatura*estatura)) > 30 THEN 'Bajar de peso'
+        WHEN (peso/(estatura*estatura)) < 18.5 THEN 'Aumentar masa'
+    END,
+	email = CASE
+        WHEN RAND() < 0.33 THEN CONCAT(SUBSTRING_INDEX(nombre, ' ', 1), '_', SUBSTRING_INDEX(apellido, ' ', 1), '@gmail.com')
+        WHEN RAND() >= 0.33 AND RAND() < 0.66 THEN CONCAT(SUBSTRING_INDEX(nombre, ' ', 1), '_', SUBSTRING_INDEX(apellido, ' ', 1), '@hotmail.com')
+        ELSE CONCAT(SUBSTRING_INDEX(nombre, ' ', 1), '_', SUBSTRING_INDEX(apellido, ' ', 1), '@outlook.com')
+    END,
+    contraseña = SUBSTRING(MD5(RAND()) FROM 1 FOR 8),
+    numero_celular = CONCAT(LPAD(FLOOR(RAND() * 90000000) + 10000000, 9, '9')),
+    distrito = 
+    CASE
+        WHEN RAND() < 0.33 THEN 'Piura'
+        WHEN RAND() >= 0.33 AND RAND() < 0.66 THEN 'Veintiséis de octubre'
+        ELSE 'Castilla'
+    END
+WHERE id >= 1
+	AND id <= 50;
