@@ -1,0 +1,100 @@
+-- Primero se creará la tabla reclamos
+
+CREATE TABLE reclamos (
+    codigo INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    usuario_id INT UNSIGNED NOT NULL,
+    dni INT UNIQUE,
+    fecha DATETIME,
+    tipo_de_reclamo VARCHAR(50),
+    detalle_del_producto VARCHAR(50),
+    detalle_reclamo VARCHAR(50),
+    PRIMARY KEY(codigo),
+    FOREIGN KEY(usuario_id) REFERENCES usuarios(id)
+)
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;
+
+-- Luego se insertan datos de forma aleatoria con esta sentencia pero lo ejecutaré 165 veces para que me de los 150 registros que quiero
+
+INSERT INTO reclamos (usuario_id) VALUES
+(
+    (SELECT ROUND(RAND()*49+1)
+     ));
+
+-- Ahora completamos las demás columnas 
+-- Primero pondremos número al azar de 8 dígitos
+
+UPDATE reclamos
+SET dni = CONCAT(LPAD(FLOOR(RAND() * 900000000) + 100000000, 8, '0'))
+WHERE codigo >= 1 AND codigo <= 165;
+
+-- Actualizaremos columna fecha
+
+UPDATE reclamos 
+SET fecha = DATE_ADD('2022-09-01', INTERVAL FLOOR(RAND() * (DATEDIFF('2022-12-31', '2022-09-01') + 1)) DAY) 
+WHERE codigo >= 1
+    AND codigo <= 165;
+
+-- Tipo de reclamo
+
+UPDATE reclamos
+SET tipo_de_reclamo = IF(RAND() < 0.5, 'Reclamo', 'Queja')
+WHERE codigo >= 1
+    AND codigo <= 165;
+
+-- Detalle del producto
+
+DELIMITER //
+CREATE PROCEDURE actualizar_datos( 
+    IN número_de_detalle INT,
+    IN id INT
+)
+BEGIN 
+    IF número_de_detalle = 1 THEN 
+    UPDATE reclamos SET detalle_del_producto = 'Pachamanca a la olla'
+    WHERE codigo = id;
+    elseif número_de_detalle = 2 THEN 
+    UPDATE reclamos SET detalle_del_producto = 'Seco de pollo con verduras al vapor'
+    WHERE codigo = id;
+	elseif número_de_detalle = 3 THEN 
+    UPDATE reclamos SET detalle_del_producto = 'Pescado a la jardinera'
+    WHERE codigo = id;
+    elseif número_de_detalle = 4 THEN 
+    UPDATE reclamos SET detalle_del_producto = 'Carapulcra con sopa seca'
+    WHERE codigo = id;
+    elseif número_de_detalle = 5 THEN 
+    UPDATE reclamos SET detalle_del_producto = 'Chancho a la naranja'
+    WHERE codigo = id;
+	elseif número_de_detalle = 6 THEN 
+    UPDATE reclamos SET detalle_del_producto = 'Tortillas de verduras'
+    WHERE codigo = id;
+    elseif número_de_detalle = 7 THEN 
+    UPDATE reclamos SET detalle_del_producto = 'Tallarines al pesto con bisteck'
+    WHERE codigo = id;
+    elseif número_de_detalle = 8 THEN 
+    UPDATE reclamos SET detalle_del_producto = 'Cau cau de pollo'
+    WHERE codigo = id;
+    elseif número_de_detalle = 9 THEN 
+    UPDATE reclamos SET detalle_del_producto = 'Roll de canela'
+    WHERE codigo = id;
+    elseif número_de_detalle = 10 THEN 
+    UPDATE reclamos SET detalle_del_producto = 'Albóndigas en salsa parrillera'
+    WHERE codigo = id;
+    ELSE  UPDATE reclamos SET detalle_del_producto = 'Crepes de avena'
+    WHERE codigo = id;
+    END IF;
+END //
+
+CALL actualizar_datos(11, 162);
+
+-- Por último detalle reclamo
+
+UPDATE reclamos
+SET detalle_reclamo = 
+    CASE
+        WHEN RAND() < 0.33 THEN 'Demora en la entrega del pedido'
+        WHEN RAND() >= 0.33 THEN 'Muy poca comida'
+        WHEN RAND() < 0.66 THEN 'No me llegó el pedido'
+        ELSE 'No funciona el aplicativo'
+    END
+WHERE codigo >= 1 AND codigo <= 165;
