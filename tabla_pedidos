@@ -1,0 +1,27 @@
+-- Crearemos la tabla
+
+CREATE TABLE pedidos (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    plan_id INT UNSIGNED NOT NULL,
+    comida_id INT UNSIGNED NOT NULL,
+    fecha_del_pedido DATETIME,
+    repartidor_delivery VARCHAR(100),
+    hora_recojo_pedido TIME,
+    hora_entrega_pedido TIME,
+    direccion VARCHAR(150),
+    PRIMARY KEY(id),
+    FOREIGN KEY(plan_id) REFERENCES planes(id),
+    FOREIGN KEY(comida_id) REFERENCES comidas(id)
+)
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_unicode_ci;
+
+-- Insertamos los datos
+
+INSERT INTO pedidos (plan_id, comida_id, fecha_del_pedido) VALUES
+(
+    (SELECT ROUND(RAND()*149+1)
+     ), (SELECT ROUND(RAND()*36+1)
+     ), DATE_ADD('2022-09-01', INTERVAL FLOOR(RAND() * (DATEDIFF('2022-12-31', '2022-09-01') + 1)) DAY) 
+WHERE codigo >= 1
+    AND codigo <= 165;);
