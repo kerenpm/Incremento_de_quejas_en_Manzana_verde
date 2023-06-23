@@ -16,12 +16,54 @@ CREATE TABLE pedidos (
 DEFAULT CHARSET=utf8mb4
 COLLATE=utf8mb4_unicode_ci;
 
--- Insertamos los datos
+-- Insertamos los datos que en total hemos puesto 215, por lo que tenemos que hacer esta sentencia 215 veces
 
 INSERT INTO pedidos (plan_id, comida_id, fecha_del_pedido) VALUES
 (
     (SELECT ROUND(RAND()*149+1)
      ), (SELECT ROUND(RAND()*36+1)
-     ), DATE_ADD('2022-09-01', INTERVAL FLOOR(RAND() * (DATEDIFF('2022-12-31', '2022-09-01') + 1)) DAY) 
-WHERE codigo >= 1
-    AND codigo <= 165;);
+     ), CONCAT(DATE_ADD('2022-09-01', INTERVAL FLOOR(RAND() * (DATEDIFF('2022-12-31', '2022-09-01') + 1)) DAY), ' ', LPAD(FLOOR(RAND() * 18) + 4, 2, '00'), ':00:00'));
+
+-- Actualizaremos las demás columnas
+
+UPDATE pedidos
+SET repartidor_delivery = 
+    CASE 
+    WHEN RAND() <0.10 THEN 'Juan Carlos Flores Ygreda'
+    WHEN RAND() <0.20 THEN 'Luis Miguel Rodríguez Mezones'
+    WHEN RAND() <0.30 THEN 'Ricardo Torres González'
+    WHEN RAND() <0.50 THEN 'Alejandro Gómez Castro'
+    WHEN RAND() <0.66 THEN 'Marco Antonio Vargas Pingo'
+    WHEN RAND() <0.77 THEN 'José Manuel Díaz Rojas'
+    WHEN RAND() <0.82 THEN 'Carlos Alberto López Mendoza'
+    WHEN RAND() <0.89 THEN 'Jorge Luis Medina Ruesta'
+    WHEN RAND() <0.95 THEN 'Eduardo Mendoza Marcelo'
+    ELSE 'Javier Ramírez Peña'
+    END
+WHERE id >=1 AND id <=215;
+-- Columna pedidos
+UPDATE pedidos
+SET direccion = 
+    CASE
+        WHEN RAND() <0.10 THEN 'Av Grau, Piura, 20008'
+        WHEN RAND() <0.22 THEN 'Av Sánchez Cerro, Piura, 20009'
+        WHEN RAND() <0.35 THEN 'Av Loreto, Piura, 20001'
+        WHEN RAND() <0.44 THEN 'Av Andrés Avelino Cáceres, Piura, 20009'
+        WHEN RAND() <0.56 THEN 'Av Bolognesi, Piura, 20001'
+        WHEN RAND() <0.68 THEN 'Av Don Bosco, Piura, 20001'
+        WHEN RAND() <0.72 THEN 'Av Peru, Piura, 20007'
+        WHEN RAND() <0.82 THEN 'Av Guillermo Gulman, Piura, 20004'
+        WHEN RAND() <0.98 THEN 'Av César Vallejo, Piura, 20007'
+        ELSE 'Av Circunvalación, Piura, 20008'
+    END
+WHERE id >=1 AND id <=215;
+
+-- Columna hora de recojo y hora de entrega del pedido
+
+UPDATE pedidos
+SET hora_recojo_pedido = CONCAT(CURDATE(), ' ', LPAD(FLOOR(RAND() * 3) + 10, 2, '00'), ':', LPAD(FLOOR(RAND() * 60), 2, '00'), ':', LPAD(FLOOR(RAND() * 60), 2, '00'))
+WHERE id >=1 AND id <=215;
+
+UPDATE pedidos
+SET hora_entrega_pedido = CONCAT(CURDATE(), ' ', LPAD(FLOOR(RAND() * 3) + 11, 2, '00'), ':', LPAD(FLOOR(RAND() * 60), 2, '00'), ':', LPAD(FLOOR(RAND() * 60), 2, '00'))
+WHERE id >=1 AND id <=215;
